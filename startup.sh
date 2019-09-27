@@ -49,9 +49,23 @@ export alias pbcopy='xclip -selection clipboard'
 export alias pbpaste='xclip -selection clipboard -o'
 source ~/.zshrc
 
-echo 'installing nvim'
-sudo apt install nvim -y
-clear
+
+echo 'Install neo vim'
+CONF_DIR=~/deps/nvim
+mkdir -p ~/deps
+
+sudo apt install -y software-properties-common
+sudo add-apt-repository ppa:neovim-ppa/stable
+sudo apt update -y
+sudo apt install -y neovim
+sudo apt install -y python-dev python-pip python3-dev python3-pip
+sudo apt autoremove -y
+
+git clone https://github.com/GadsDev/Vim-Config $CONF_DIR
+mkdir -p ~/.config
+ln -s $CONF_DIR ~/.config/nvim
+
+sudo update-alternatives --config editor
 
 echo 'installing code'
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
@@ -83,7 +97,7 @@ echo 'installing nvm'
 sh -c "$(curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash)"
 
 export NVM_DIR="$HOME/.nvm" && (
-git clone https://github.com/GadsDev/Vim-Config "$NVM_DIR"
+git clone https://github.com/creationix/nvm.git "$NVM_DIR"
 cd "$NVM_DIR"
 git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
 ) && \. "$NVM_DIR/nvm.sh"
