@@ -3,11 +3,14 @@ sudo apt-get update
 echo 'installing curl' 
 sudo apt install curl -y
 
+echo 'installing node and npm' 
+sudo apt install node -y
+
 echo 'installing git' 
 sudo apt install git -y
 
 echo "What name do you want to use in GIT user.name?"
-echo "For example, mine will be \"Erick Wendel\""
+echo "For example, mine will be \"GadsDev\""
 read git_config_user_name
 git config --global user.name "$git_config_user_name"
 clear 
@@ -46,8 +49,8 @@ export alias pbcopy='xclip -selection clipboard'
 export alias pbpaste='xclip -selection clipboard -o'
 source ~/.zshrc
 
-echo 'installing vim'
-sudo apt install vim -y
+echo 'installing nvim'
+sudo apt install nvim -y
 clear
 
 echo 'installing code'
@@ -80,7 +83,7 @@ echo 'installing nvm'
 sh -c "$(curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash)"
 
 export NVM_DIR="$HOME/.nvm" && (
-git clone https://github.com/creationix/nvm.git "$NVM_DIR"
+git clone https://github.com/GadsDev/Vim-Config "$NVM_DIR"
 cd "$NVM_DIR"
 git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
 ) && \. "$NVM_DIR/nvm.sh"
